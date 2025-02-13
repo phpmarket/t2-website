@@ -1,7 +1,5 @@
 <?php
 
-namespace T2;
-
 class Install
 {
     /**
