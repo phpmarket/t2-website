@@ -1,6 +1,6 @@
 <?php
 
-namespace Web;
+namespace T2;
 
 class Install
 {
