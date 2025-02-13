@@ -49,14 +49,39 @@ class Install
     public static function installByRelation(): void
     {
         foreach (static::$pathRelation as $source => $dest) {
-            if ($pos = strrpos($dest, '/')) {
-                $parent_dir = base_path() . '/' . substr($dest, 0, $pos);
-                if (!is_dir($parent_dir)) {
-                    mkdir($parent_dir, 0777, true);
-                }
+            // 获取目标文件的父目录路径
+            $parentDir = base_path(dirname($dest));
+            // 如果父目录不存在，则递归创建目录
+            if (!is_dir($parentDir)) {
+                mkdir($parentDir, 0777, true);  // 0777 权限，允许读写和执行
             }
-            copy_dir(__DIR__ . "/$source", base_path() . "/$dest");
+            // 获取目标文件完整路径
+            $destFile = base_path($dest);
+            // 如果目标文件已存在，则跳过该文件的复制
+            if (file_exists($destFile)) {
+                continue;
+            }
+            // 获取源文件的完整路径
+            $sourceFile = __DIR__ . "/$source";
+            // 复制目录或文件到目标路径（递归复制）
+            copy_dir($sourceFile, $destFile, true);
+
+            // 输出复制成功的目标路径
             echo "Create $dest\r\n";
+
+            // 如果源文件为普通文件，则删除源文件
+            if (is_file($sourceFile)) {
+                @unlink($sourceFile);  // 使用 @ 符号抑制错误
+            }
+
+//            if ($pos = strrpos($dest, '/')) {
+//                $parent_dir = base_path() . '/' . substr($dest, 0, $pos);
+//                if (!is_dir($parent_dir)) {
+//                    mkdir($parent_dir, 0777, true);
+//                }
+//            }
+//            copy_dir(__DIR__ . "/$source", base_path() . "/$dest");
+//            echo "Create $dest\r\n";
         }
     }
 
