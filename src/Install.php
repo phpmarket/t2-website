@@ -65,43 +65,9 @@ class Install
             $sourceFile = __DIR__ . "/$source";
             // 复制目录或文件到目标路径（递归复制）
             copy_dir($sourceFile, $destFile, true);
-
             // 输出复制成功的目标路径
             echo "Create $dest\r\n";
-
-            // 删除源文件或目录
-            if (is_file($sourceFile)) {
-                @unlink($sourceFile);  // 删除普通文件
-            } elseif (is_dir($sourceFile)) {
-                self::delete_dir($sourceFile);  // 递归删除目录
-            }
         }
-    }
-
-    /**
-     * 递归删除目录及其内容
-     *
-     * @param string $dir
-     *
-     * @return void
-     */
-    public static function delete_dir(string $dir): void
-    {
-        if (!is_dir($dir)) {
-            return;
-        }
-        $files = scandir($dir);
-        foreach ($files as $file) {
-            if ($file !== '.' && $file !== '..') {
-                $filePath = "$dir/$file";
-                if (is_dir($filePath)) {
-                    self::delete_dir($filePath);  // 递归删除子目录
-                } else {
-                    @unlink($filePath);  // 删除文件
-                }
-            }
-        }
-        rmdir($dir);  // 删除空目录
     }
 
     /**
