@@ -69,7 +69,7 @@ class Install
      */
     public static function uninstallByRelation(): void
     {
-        foreach (static::$pathRelation as $source => $dest) {
+        foreach (static::$pathRelation as $dest) {
             $path = base_path() . "/$dest";
             if (!is_dir($path) && !is_file($path)) {
                 continue;
