@@ -55,14 +55,12 @@ class Install
             }
             $destFile = base_path($dest);
             $sourceFile = __DIR__ . "/$source";
-
             // 如果目标文件已存在，跳过复制，但仍尝试删除源文件
             if (!file_exists($destFile)) {
                 // 复制目录或文件到目标路径（递归复制）
                 copy_dir($sourceFile, $destFile, true);
                 echo "Create $dest\r\n";
             }
-
             if (is_file($sourceFile) && is_writable($sourceFile)) {
                 @unlink($sourceFile);
             } elseif (is_dir($sourceFile)) {
@@ -86,11 +84,9 @@ class Install
             if (is_dir($path)) {
                 self::recursiveRemoveDir($path);
             } else {
-                echo "Deleting file: $path\r\n";
                 @unlink($path);
             }
         }
-        echo "Removing directory: $dir\r\n";
         @rmdir($dir);
     }
 
