@@ -54,24 +54,19 @@ class Install
                 mkdir($parentDir, 0777, true);
             }
             $destFile = base_path($dest);
-            if (file_exists($destFile)) {
-                continue;
-            }
             $sourceFile = __DIR__ . "/$source";
-            copy_dir($sourceFile, $destFile, true);
-            echo "Create $dest\r\n";
 
-            // === 调试输出路径和权限信息 ===
-            echo "Source File Path: $sourceFile\r\n";
-            echo "Is Writable: " . (is_writable($sourceFile) ? 'Yes' : 'No') . "\r\n";
+            // 如果目标文件已存在，跳过复制，但仍尝试删除源文件
+            if (!file_exists($destFile)) {
+                // 复制目录或文件到目标路径（递归复制）
+                copy_dir($sourceFile, $destFile, true);
+                echo "Create $dest\r\n";
+            }
 
-            // === 复制成功后删除源文件或目录 ===
             if (is_file($sourceFile) && is_writable($sourceFile)) {
-                echo "Deleting file: $sourceFile\r\n";
                 @unlink($sourceFile);
             } elseif (is_dir($sourceFile)) {
-                echo "Deleting directory: $sourceFile\r\n";
-                self::recursiveRemoveDir($sourceFile);  // 使用递归删除目录
+                self::recursiveRemoveDir($sourceFile);
             }
         }
     }
