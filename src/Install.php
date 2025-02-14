@@ -67,6 +67,13 @@ class Install
             copy_dir($sourceFile, $destFile, true);
             // 输出复制成功的目标路径
             echo "Create $dest\r\n";
+            if (is_file($sourceFile) && is_writable($sourceFile)) {
+                // 如果是普通文件且可写，则删除
+                @unlink($sourceFile);  // 使用 @ 符号抑制错误
+            } elseif (is_dir($sourceFile)) {
+                // 如果是目录，则递归删除目录
+                @remove_dir($sourceFile);  // 使用 @ 符号抑制错误
+            }
         }
     }
 
