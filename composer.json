@@ -4,8 +4,15 @@
   "license": "MIT",
   "description": "T2Engine Website",
   "require": {
-    "php": ">=8.1",
-    "phpmarket/t2-framework": "^v1.0.0"
+    "php": ">=8.3",
+    "phpmarket/t2-framework": "^1.0.0",
+    "illuminate/database": "^11.38",
+    "illuminate/pagination": "^11.38",
+    "illuminate/events": "^11.38",
+    "illuminate/redis": "^11.38",
+    "twig/twig": "^3.18",
+    "symfony/cache": "^7.2",
+    "symfony/var-dumper": ">=4.2"
   },
   "autoload": {
     "psr-4": {
