@@ -1,6 +1,6 @@
 {
   "name": "phpmarket/t2-website",
-  "type": "project",
+  "type": "library",
   "license": "MIT",
   "description": "T2Engine Website",
   "require": {
