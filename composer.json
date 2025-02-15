@@ -11,11 +11,11 @@
     "illuminate/events": "^11.38",
     "illuminate/redis": "^11.38",
     "twig/twig": "^3.18",
-    "symfony/cache": "^7.2"
+    "symfony/cache": "^7.2",
+    "symfony/var-dumper": ">=4.2"
   },
   "require-dev": {
-    "laravel/serializable-closure": "^2.0",
-    "symfony/var-dumper": ">=4.2"
+    "laravel/serializable-closure": "^2.0"
   },
   "autoload": {
     "psr-4": {
