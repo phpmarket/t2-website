@@ -17,8 +17,9 @@ class Install
      * 作用：用于在安装时，将源文件复制到目标位置
      */
     protected static array $pathRelation = array(
-        'web'    => 'web',
-        'public' => 'public/web',
+        'config/web.php' => 'config/web.php', // 配置文件
+        'web'            => 'web', // web目录
+        'public'         => 'public/web', // 静态资源目录
     );
 
     /**
