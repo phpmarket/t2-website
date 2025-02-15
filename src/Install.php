@@ -16,11 +16,11 @@ class Install
      * 值：目标文件路径（相对于项目根目录）
      * 作用：用于在安装时，将源文件复制到目标位置
      */
-    protected static array $pathRelation = array(
-        'config' => 'config', // 配置文件目录
-        'web'    => 'web', // web目录
-        'public' => 'public/web', // 静态资源目录
-    );
+    protected static array $pathRelation = [
+        'config/web.php' => 'config/web.php', // 配置文件
+        'web'            => 'web', // web目录
+        'public'         => 'public/web', // 静态资源目录
+    ];
 
     /**
      * Install
